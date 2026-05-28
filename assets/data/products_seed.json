@@ -1,0 +1,19 @@
+[
+  {"id": "tomato", "name": "Tomato", "name_ne": "गोलभेडा", "category": "vegetables"},
+  {"id": "potato", "name": "Potato", "name_ne": "आलु", "category": "vegetables"},
+  {"id": "cauliflower", "name": "Cauliflower", "name_ne": "काउली", "category": "vegetables"},
+  {"id": "cabbage", "name": "Cabbage", "name_ne": "बन्दा", "category": "vegetables"},
+  {"id": "onion", "name": "Onion", "name_ne": "प्याज", "category": "vegetables"},
+  {"id": "rice", "name": "Rice (Paddy)", "name_ne": "धान", "category": "vegetables"},
+  {"id": "maize", "name": "Maize", "name_ne": "मकै", "category": "vegetables"},
+  {"id": "apple", "name": "Apple", "name_ne": "स्याउ", "category": "fruits"},
+  {"id": "orange", "name": "Orange", "name_ne": "सुन्तला", "category": "fruits"},
+  {"id": "mango", "name": "Mango", "name_ne": "आँप", "category": "fruits"},
+  {"id": "banana", "name": "Banana", "name_ne": "केरा", "category": "fruits"},
+  {"id": "guava", "name": "Guava", "name_ne": "अम्बा", "category": "fruits"},
+  {"id": "milk", "name": "Milk", "name_ne": "दूध", "category": "dairy"},
+  {"id": "yogurt", "name": "Yogurt (Dahi)", "name_ne": "दही", "category": "dairy"},
+  {"id": "cheese", "name": "Cheese", "name_ne": "चीज", "category": "dairy"},
+  {"id": "butter", "name": "Butter", "name_ne": "मक्खन", "category": "dairy"},
+  {"id": "ghee", "name": "Ghee", "name_ne": "घिउ", "category": "dairy"}
+]

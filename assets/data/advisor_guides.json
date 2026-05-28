@@ -1,0 +1,114 @@
+[
+  {
+    "id": "tomato",
+    "category": "vegetables",
+    "name_en": "Tomato",
+    "name_ne": "गोलभेडा",
+    "summary": "Warm-season crop; stake plants and manage blight in humid Terai.",
+    "stages": ["nursery", "transplant", "flowering", "harvest"],
+    "guides": [
+      {"stage": "nursery", "title": "Seedling bed", "body": "Sow in raised beds with compost. Harden seedlings 7 days before transplant. Keep moist, not waterlogged."},
+      {"stage": "transplant", "title": "Field planting", "body": "Space 45×60 cm. Apply well-rotted FYM. Mulch to reduce weeds. Irrigate every 3–4 days in dry season."},
+      {"stage": "flowering", "title": "Fruit set", "body": "Side-dress compost tea or balanced NPK lightly. Remove lower leaves touching soil. Scout for leaf miner and blight."},
+      {"stage": "harvest", "title": "Pick at breaker stage", "body": "Harvest when 30% pink for local market; fully red for immediate sale. Sort damaged fruit daily."}
+    ]
+  },
+  {
+    "id": "potato",
+    "category": "vegetables",
+    "name_en": "Potato",
+    "name_ne": "आलु",
+    "summary": "Use certified seed tubers; hill soil at 15–20 cm height.",
+    "stages": ["planting", "vegetative", "tuberization", "harvest"],
+    "guides": [
+      {"stage": "planting", "title": "Seed tubers", "body": "Cut large tubers with 2–3 eyes. Treat with wood ash. Plant 10 cm deep in ridges after pre-monsoon rain."},
+      {"stage": "vegetative", "title": "Hilling", "body": "Earthing up when plants are 15–20 cm protects tubers from greening and supports root growth."},
+      {"stage": "tuberization", "title": "Water & pests", "body": "Maintain even soil moisture. Watch for late blight in cloudy humid weeks—remove affected tops early."},
+      {"stage": "harvest", "title": "Cure & store", "body": "Harvest when vines yellow. Dry 2–3 days in shade before storing in ventilated jute bags."}
+    ]
+  },
+  {
+    "id": "apple",
+    "category": "fruits",
+    "name_en": "Apple",
+    "name_ne": "स्याउ",
+    "summary": "High-altitude orchards; winter pruning and bagging improve grade.",
+    "stages": ["dormancy", "bloom", "fruit growth", "harvest"],
+    "guides": [
+      {"stage": "dormancy", "title": "Winter pruning", "body": "Prune crossing branches in Magh–Falgun. Apply lime wash on trunks. Apply FYM basins before bud break."},
+      {"stage": "bloom", "title": "Pollination", "body": "Introduce bee hives or avoid spraying during bloom. Thin clusters to 1–2 fruits per spur."},
+      {"stage": "fruit growth", "title": "Bagging & nutrition", "body": "Bag fruits 6 weeks after set to reduce scab. Foliar calcium reduces bitter pit."},
+      {"stage": "harvest", "title": "Maturity index", "body": "Pick when starch clears on cut test. Store at 0–4°C with humidity 90% for export chains."}
+    ]
+  },
+  {
+    "id": "mango",
+    "category": "fruits",
+    "name_en": "Mango",
+    "name_ne": "आँप",
+    "summary": "Terai and inner Terai; manage hopper before flowering.",
+    "stages": ["pruning", "flowering", "fruit hold", "harvest"],
+    "guides": [
+      {"stage": "pruning", "title": "Canopy management", "body": "Open center after harvest. Remove water shoots. Apply boron spray 3 weeks before bloom if deficiency suspected."},
+      {"stage": "flowering", "title": "Hopper control", "body": "Monitor inflorescence for hopper—sticky traps and timely botanical sprays protect fruit set."},
+      {"stage": "fruit hold", "title": "Irrigation", "body": "Light irrigation during fruit swell. Avoid heavy nitrogen—it causes spongy tissue."},
+      {"stage": "harvest", "title": "Maturity", "body": "Harvest when shoulder fills and sap reduces. Dip in hot water for anthracnose if shipping far."}
+    ]
+  },
+  {
+    "id": "milk",
+    "category": "dairy",
+    "name_en": "Milk",
+    "name_ne": "दूध",
+    "summary": "Clean milking, cooling within 2 hours, and balanced ration for buffaloes/cows.",
+    "stages": ["feeding", "milking", "hygiene", "storage"],
+    "guides": [
+      {"stage": "feeding", "title": "Balanced ration", "body": "Provide green fodder + concentrate by body weight. Mineral mix improves fat %. Ensure 24/7 clean water."},
+      {"stage": "milking", "title": "Routine", "body": "Fixed morning/evening times. Strip fore-milk to check mastitis. Use stainless utensils only."},
+      {"stage": "hygiene", "title": "Udder health", "body": "Wash teats with lukewarm water, dry before milking. Post-dip iodine solution in wet season."},
+      {"stage": "storage", "title": "Cool chain", "body": "Cool to 4°C within 2 hours. Deliver to collection center same day for best price and safety."}
+    ]
+  },
+  {
+    "id": "yogurt",
+    "category": "dairy",
+    "name_en": "Yogurt (Dahi)",
+    "name_ne": "दही",
+    "summary": "Culture consistency and temperature control define texture and shelf life.",
+    "stages": ["milk prep", "culture", "incubation", "finish"],
+    "guides": [
+      {"stage": "milk prep", "title": "Standardize", "body": "Boil fresh milk, cool to 45°C. Remove cream if skim dahi is required."},
+      {"stage": "culture", "title": "Inoculation", "body": "Add 2% previous batch culture. Use fresh culture weekly to avoid off-flavors."},
+      {"stage": "incubation", "title": "Set time", "body": "Keep warm 4–6 hours without moving. Insulated pots work in hills; avoid drafts."},
+      {"stage": "finish", "title": "Chill & sell", "body": "Refrigerate after set. Market within 48 hours; label production date in Nepali calendar for trust."}
+    ]
+  },
+  {
+    "id": "rice",
+    "category": "vegetables",
+    "name_en": "Rice (Paddy)",
+    "name_ne": "धान",
+    "summary": "Monsoon transplant; maintain shallow standing water in vegetative stage.",
+    "stages": ["nursery", "transplant", "vegetative", "harvest"],
+    "guides": [
+      {"stage": "nursery", "title": "Seed rate", "body": "Treat seeds; sow in raised nursery beds 25–30 days before monsoon onset."},
+      {"stage": "transplant", "title": "Spacing", "body": "2–3 seedlings per hill, 20×20 cm for fine varieties. Level fields for even water."},
+      {"stage": "vegetative", "title": "Water & weeds", "body": "2–5 cm standing water; drain before top-dress urea. Manual weed at 25 and 45 DAT."},
+      {"stage": "harvest", "title": "Dry & store", "body": "Harvest at 80% golden grains. Dry to 14% moisture before jute storage with neem leaves."}
+    ]
+  },
+  {
+    "id": "maize",
+    "category": "vegetables",
+    "name_en": "Maize",
+    "name_ne": "मकै",
+    "summary": "Sow with first monsoon rain; nitrogen at knee-high stage.",
+    "stages": ["sowing", "vegetative", "tasseling", "harvest"],
+    "guides": [
+      {"stage": "sowing", "title": "Population", "body": "45×25 cm spacing; one seed per hole. Apply phosphorus in planting furrow."},
+      {"stage": "vegetative", "title": "Side dress N", "body": "Urea when knee-high; second split at tasseling if soil is light."},
+      {"stage": "tasseling", "title": "Pest watch", "body": "Fall armyworm—check whorl weekly. Bird nets near maturity in kitchen gardens."},
+      {"stage": "harvest", "title": "Moisture", "body": "Harvest cobs when husks dry; shell and sun-dry to 13% for storage."}
+    ]
+  }
+]

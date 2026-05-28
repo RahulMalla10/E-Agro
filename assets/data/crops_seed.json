@@ -1,0 +1,30 @@
+[
+  {
+    "id": "rice",
+    "name_en": "Rice (Paddy)",
+    "name_ne": "धान",
+    "stages": ["sowing", "vegetative", "flowering", "harvest"],
+    "summary": "Plant during monsoon; maintain 2–5 cm standing water in vegetative stage."
+  },
+  {
+    "id": "maize",
+    "name_en": "Maize",
+    "name_ne": "मकै",
+    "stages": ["sowing", "vegetative", "tasseling", "harvest"],
+    "summary": "Sow after first monsoon rain; apply nitrogen at knee-high stage."
+  },
+  {
+    "id": "wheat",
+    "name_en": "Wheat",
+    "name_ne": "गहुँ",
+    "stages": ["sowing", "tillering", "heading", "harvest"],
+    "summary": "Sow Nov–Dec in Terai; irrigate at crown root initiation and heading."
+  },
+  {
+    "id": "potato",
+    "name_en": "Potato",
+    "name_ne": "आलु",
+    "stages": ["planting", "vegetative", "tuberization", "harvest"],
+    "summary": "Plant certified seed tubers; hill up soil when plants are 15–20 cm tall."
+  }
+]
