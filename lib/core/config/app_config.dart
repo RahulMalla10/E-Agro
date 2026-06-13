@@ -1,6 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-/// Runtime configuration loaded from `.env` (never hardcode secrets in source).
 class AppConfig {
   const AppConfig({
     required this.supabaseUrl,
