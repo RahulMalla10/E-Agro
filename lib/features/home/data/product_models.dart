@@ -10,16 +10,16 @@ enum ProductCategory {
   String get dbValue => name;
 
   IconData get icon => switch (this) {
-        ProductCategory.vegetables => Icons.eco_outlined,
-        ProductCategory.fruits => Icons.local_florist_outlined,
-        ProductCategory.dairy => Icons.water_drop_outlined,
-      };
+    ProductCategory.vegetables => Icons.eco_outlined,
+    ProductCategory.fruits => Icons.local_florist_outlined,
+    ProductCategory.dairy => Icons.water_drop_outlined,
+  };
 
   Color get color => switch (this) {
-        ProductCategory.vegetables => const Color(0xFF388E3C),
-        ProductCategory.fruits => const Color(0xFFE65100),
-        ProductCategory.dairy => const Color(0xFF5D4037),
-      };
+    ProductCategory.vegetables => const Color(0xFF388E3C),
+    ProductCategory.fruits => const Color(0xFFE65100),
+    ProductCategory.dairy => const Color(0xFF5D4037),
+  };
 
   static ProductCategory fromString(String value) {
     return ProductCategory.values.firstWhere(
@@ -54,8 +54,7 @@ class FarmerProduct {
   final String? sellerId;
   final DateTime createdAt;
 
-  String? get primaryImage =>
-      imagePaths.isEmpty ? null : imagePaths.first;
+  String? get primaryImage => imagePaths.isEmpty ? null : imagePaths.first;
 
   String displayName(bool nepali) {
     if (nepali && nameNe != null && nameNe!.isNotEmpty) return nameNe!;
@@ -88,17 +87,17 @@ class FarmerProduct {
   }
 
   Map<String, Object?> toMap() => {
-        'id': id,
-        'name': name,
-        'name_ne': nameNe,
-        'category': category.dbValue,
-        'image_paths': jsonEncode(imagePaths),
-        'stock_quantity': stockQuantity,
-        'stock_unit': stockUnit,
-        'price_npr': priceNpr,
-        'seller_id': sellerId,
-        'created_at': createdAt.toIso8601String(),
-      };
+    'id': id,
+    'name': name,
+    'name_ne': nameNe,
+    'category': category.dbValue,
+    'image_paths': jsonEncode(imagePaths),
+    'stock_quantity': stockQuantity,
+    'stock_unit': stockUnit,
+    'price_npr': priceNpr,
+    'seller_id': sellerId,
+    'created_at': createdAt.toIso8601String(),
+  };
 
   bool matchesQuery(String query) {
     if (query.isEmpty) return true;
@@ -140,4 +139,46 @@ class MarketplaceOrder {
   final String paymentStatus;
   final String? esewaRef;
   final DateTime createdAt;
+}
+
+class SellerReview {
+  const SellerReview({
+    required this.id,
+    required this.sellerId,
+    this.buyerId,
+    this.productId,
+    required this.rating,
+    this.comment,
+    required this.createdAt,
+  });
+
+  final String id;
+  final String sellerId;
+  final String? buyerId;
+  final String? productId;
+  final int rating; // 1-5 stars
+  final String? comment;
+  final DateTime createdAt;
+
+  factory SellerReview.fromMap(Map<String, Object?> map) {
+    return SellerReview(
+      id: map['id'] as String,
+      sellerId: map['seller_id'] as String,
+      buyerId: map['buyer_id'] as String?,
+      productId: map['product_id'] as String?,
+      rating: (map['rating'] as int?) ?? 0,
+      comment: map['comment'] as String?,
+      createdAt: DateTime.parse(map['created_at'] as String),
+    );
+  }
+
+  Map<String, Object?> toMap() => {
+    'id': id,
+    'seller_id': sellerId,
+    'buyer_id': buyerId,
+    'product_id': productId,
+    'rating': rating,
+    'comment': comment,
+    'created_at': createdAt.toIso8601String(),
+  };
 }
