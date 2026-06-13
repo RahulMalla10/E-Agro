@@ -39,10 +39,22 @@ create table if not exists public.sync_events (
   created_at timestamptz default now()
 );
 
+-- Seller reviews for marketplace
+create table if not exists public.seller_reviews (
+  id text primary key,
+  seller_id text not null,
+  buyer_id text,
+  product_id text,
+  rating integer not null check (rating >= 1 and rating <= 5),
+  comment text,
+  created_at timestamptz default now()
+);
+
 -- Row Level Security
 alter table public.farmer_profiles enable row level security;
 alter table public.disease_scans enable row level security;
 alter table public.sync_events enable row level security;
+alter table public.seller_reviews enable row level security;
 
 create policy "Users read own profile"
   on public.farmer_profiles for select
@@ -69,6 +81,16 @@ create policy "Users insert own sync events"
   on public.sync_events for insert
   with check (auth.uid() = user_id);
 
+create policy "Anyone can read all seller reviews"
+  on public.seller_reviews for select
+  to authenticated
+  using (true);
+
+create policy "Users can insert own seller reviews"
+  on public.seller_reviews for insert
+  to authenticated
+  with check (buyer_id = auth.uid()::text or buyer_id is null);
+
 -- Updated_at trigger
 create or replace function public.set_updated_at()
 returns trigger as $$
@@ -81,3 +103,8 @@ $$ language plpgsql;
 create trigger farmer_profiles_updated_at
   before update on public.farmer_profiles
   for each row execute function public.set_updated_at();
+
+-- Indexes for performance
+create index if not exists idx_seller_reviews_seller_id on public.seller_reviews(seller_id);
+create index if not exists idx_seller_reviews_created_at on public.seller_reviews(created_at desc);
+
