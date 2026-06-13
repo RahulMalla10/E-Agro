@@ -9,6 +9,7 @@ import 'package:krishi_smart/features/auth/data/auth_repository.dart';
 import 'package:krishi_smart/features/crop_advisor/data/crop_advisor_repository.dart';
 import 'package:krishi_smart/features/disease_detection/data/disease_repository.dart';
 import 'package:krishi_smart/features/home/data/product_repository.dart';
+import 'package:krishi_smart/features/home/data/seller_review_repository.dart';
 import 'package:krishi_smart/features/seller_analytics/data/seller_analytics_repository.dart';
 import 'package:krishi_smart/features/news/data/news_repository.dart';
 import 'package:krishi_smart/features/weather/data/weather_repository.dart';
@@ -21,9 +22,7 @@ final secureStorageProvider = Provider<SecureStorageService>(
   (ref) => SecureStorageService(),
 );
 
-final cryptoServiceProvider = Provider<CryptoService>(
-  (ref) => CryptoService(),
-);
+final cryptoServiceProvider = Provider<CryptoService>((ref) => CryptoService());
 
 final permissionServiceProvider = Provider<PermissionService>(
   (ref) => PermissionService(),
@@ -49,7 +48,9 @@ final productRepositoryProvider = Provider<ProductRepository>((ref) {
   return ProductRepository(ref.watch(appDatabaseProvider));
 });
 
-final sellerAnalyticsRepositoryProvider = Provider<SellerAnalyticsRepository>((ref) {
+final sellerAnalyticsRepositoryProvider = Provider<SellerAnalyticsRepository>((
+  ref,
+) {
   return SellerAnalyticsRepository(ref.watch(appDatabaseProvider));
 });
 
@@ -66,4 +67,8 @@ final diseaseRepositoryProvider = Provider<DiseaseRepository>((ref) {
 
 final weatherRepositoryProvider = Provider<WeatherRepository>((ref) {
   return WeatherRepository(config: ref.watch(appConfigProvider));
+});
+
+final sellerReviewRepositoryProvider = Provider<SellerReviewRepository>((ref) {
+  return SellerReviewRepository(ref.watch(appDatabaseProvider));
 });
