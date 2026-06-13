@@ -10,7 +10,7 @@ class AppDatabase {
 
   final Database _db;
   static const _dbName = 'krishi_smart.db';
-  static const _dbVersion = 3;
+  static const _dbVersion = 4;
 
   static AppDatabase? _instance;
 
@@ -114,18 +114,59 @@ class AppDatabase {
         created_at TEXT NOT NULL
       )
     ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS seller_reviews (
+        id TEXT PRIMARY KEY,
+        seller_id TEXT NOT NULL,
+        buyer_id TEXT,
+        product_id TEXT,
+        rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+        comment TEXT,
+        created_at TEXT NOT NULL
+      )
+    ''');
     await db.execute(
       'CREATE INDEX IF NOT EXISTS idx_products_category ON farmer_products(category)',
     );
+    await db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_seller_reviews_seller ON seller_reviews(seller_id)',
+    );
+    await db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_seller_reviews_date ON seller_reviews(created_at DESC)',
+    );
   }
 
-  static Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+  static Future<void> _onUpgrade(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
     if (oldVersion < 2) {
       await _createMarketplaceTables(db);
     }
     if (oldVersion < 3) {
       await db.execute('DROP TABLE IF EXISTS farmer_products');
       await _createMarketplaceTables(db);
+    }
+    if (oldVersion < 4) {
+      await db.execute('DROP TABLE IF EXISTS seller_reviews');
+      await db.execute('''
+        CREATE TABLE IF NOT EXISTS seller_reviews (
+          id TEXT PRIMARY KEY,
+          seller_id TEXT NOT NULL,
+          buyer_id TEXT,
+          product_id TEXT,
+          rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+          comment TEXT,
+          created_at TEXT NOT NULL
+        )
+      ''');
+      await db.execute(
+        'CREATE INDEX IF NOT EXISTS idx_seller_reviews_seller ON seller_reviews(seller_id)',
+      );
+      await db.execute(
+        'CREATE INDEX IF NOT EXISTS idx_seller_reviews_date ON seller_reviews(created_at DESC)',
+      );
     }
   }
 
@@ -180,11 +221,7 @@ class AppDatabase {
   }
 
   Future<List<Map<String, Object?>>> getDiseaseScans({int limit = 20}) {
-    return _db.query(
-      'disease_scans',
-      orderBy: 'scanned_at DESC',
-      limit: limit,
-    );
+    return _db.query('disease_scans', orderBy: 'scanned_at DESC', limit: limit);
   }
 
   Future<void> enqueueSync(Map<String, Object?> item) async {
@@ -192,11 +229,7 @@ class AppDatabase {
   }
 
   Future<List<Map<String, Object?>>> pendingSyncItems({int limit = 50}) {
-    return _db.query(
-      'sync_queue',
-      orderBy: 'created_at ASC',
-      limit: limit,
-    );
+    return _db.query('sync_queue', orderBy: 'created_at ASC', limit: limit);
   }
 
   Future<void> markSyncComplete(String id) async {
@@ -265,11 +298,59 @@ class AppDatabase {
     );
   }
 
-  Future<List<Map<String, Object?>>> getProductsForSeller(String sellerId) async {
+  Future<List<Map<String, Object?>>> getProductsForSeller(
+    String sellerId,
+  ) async {
     return _db.query(
       'farmer_products',
       where: 'seller_id = ? OR seller_id IS NULL',
       whereArgs: [sellerId],
+      orderBy: 'created_at DESC',
+    );
+  }
+
+  // Seller Review Methods
+  Future<void> insertReview(Map<String, Object?> review) async {
+    await _db.insert('seller_reviews', review);
+  }
+
+  Future<List<Map<String, Object?>>> getReviewsForSeller(
+    String sellerId,
+  ) async {
+    return _db.query(
+      'seller_reviews',
+      where: 'seller_id = ?',
+      whereArgs: [sellerId],
+      orderBy: 'created_at DESC',
+    );
+  }
+
+  Future<double> getAverageRatingForSeller(String sellerId) async {
+    final result = await _db.rawQuery(
+      'SELECT AVG(rating) as avg_rating FROM seller_reviews WHERE seller_id = ?',
+      [sellerId],
+    );
+    if (result.isEmpty || result.first['avg_rating'] == null) {
+      return 0.0;
+    }
+    return (result.first['avg_rating'] as num).toDouble();
+  }
+
+  Future<int> getReviewCountForSeller(String sellerId) async {
+    final result = await _db.rawQuery(
+      'SELECT COUNT(*) as count FROM seller_reviews WHERE seller_id = ?',
+      [sellerId],
+    );
+    return (result.first['count'] as int?) ?? 0;
+  }
+
+  Future<List<Map<String, Object?>>> getReviewsForProduct(
+    String productId,
+  ) async {
+    return _db.query(
+      'seller_reviews',
+      where: 'product_id = ?',
+      whereArgs: [productId],
       orderBy: 'created_at DESC',
     );
   }
